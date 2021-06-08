@@ -92,9 +92,3 @@ class Node:
 
     def __repr__(self) -> str:
         return self.data
-
-
-linked = LinkedList(["first", "second", "third"])
-
-linked.reverse()
-print(linked)

@@ -93,10 +93,3 @@ class Matrix:
         if not 0 <= col < self._cols:
             raise IndexError("Column index out of range")
         return index
-
-
-m = Matrix(6, 3, 3)
-print(m)
-n = Matrix(3, 6, 5)
-print(n)
-print(n.mutiply(m))

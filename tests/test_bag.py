@@ -5,7 +5,7 @@ from contextlib import redirect_stdout
 from io import StringIO
 
 import pytest
-from bag.bag import Bag
+from adt_bag.bag import Bag
 
 
 @pytest.fixture

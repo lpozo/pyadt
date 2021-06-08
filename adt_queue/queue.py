@@ -102,33 +102,33 @@ class Queue:
         yield from reversed(self._items)
 
 
-if __name__ == "__main__":
-    # Tests
-    numbers = Queue()
-    print(numbers)
+# if __name__ == "__main__":
+#     # Tests
+#     numbers = Queue()
+#     print(numbers)
 
-    # Enqueue items
-    for number in range(1, 5):
-        numbers.enqueue(number)
-        print(numbers)
+#     # Enqueue items
+#     for number in range(1, 5):
+#         numbers.enqueue(number)
+#         print(numbers)
 
-    # Support len()
-    print(f"Length: {len(numbers)}")
+#     # Support len()
+#     print(f"Length: {len(numbers)}")
 
-    # Support membership
-    print("2 in numbers", "->", 2 in numbers)
-    print("10 in numbers", "->", 10 in numbers)
+#     # Support membership
+#     print("2 in numbers", "->", 2 in numbers)
+#     print("10 in numbers", "->", 10 in numbers)
 
-    # Support iteration
-    print("Normal iteration")
-    for number in numbers:
-        print(f"Number: {number}")
+#     # Support iteration
+#     print("Normal iteration")
+#     for number in numbers:
+#         print(f"Number: {number}")
 
-    print("Reverse iteration")
-    for number in reversed(numbers):
-        print(f"Number: {number}")
+#     print("Reverse iteration")
+#     for number in reversed(numbers):
+#         print(f"Number: {number}")
 
-    # Dequeue items
-    for i in range(len(numbers)):
-        numbers.dequeue()
-        print(numbers)
+#     # Dequeue items
+#     for i in range(len(numbers)):
+#         numbers.dequeue()
+#         print(numbers)

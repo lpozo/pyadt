@@ -58,14 +58,3 @@ class Array2D:
 
     def __len__(self) -> int:
         return self._table.items
-
-
-d = Array2D(4, 4)
-d[0, 0] = "leodanis"
-d[1, 0] = "pozo"
-print(d[1, 0])
-print(d[0, 0])
-print(d.capacity())
-
-for item in d:
-    print(item)

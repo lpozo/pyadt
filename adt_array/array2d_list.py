@@ -51,11 +51,3 @@ class Array2DList:
         if not 0 <= col < self._table.columns:
             raise IndexError("Column index out of range")
         return index
-
-
-d = Array2DList(4, 4)
-d[0, 0] = "leodanis"
-d[1, 0] = "pozo"
-print(d)
-print(d[1, 0])
-print(d.capacity())
