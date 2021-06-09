@@ -60,7 +60,7 @@ class Bag:
             ) from None
 
     def count(self, value: Any) -> int:
-        """Count the number of times value appears in the Bag.
+        """Count the number of times an object appears in the Bag.
 
         >>> b = Bag([1, 2, 2])
         >>> b.count(1)
