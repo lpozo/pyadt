@@ -1,4 +1,4 @@
-"""Test Bag class."""
+"""Test bag.py."""
 
 from collections import Counter
 from contextlib import redirect_stdout
