@@ -1,4 +1,4 @@
-"""Simple Bag abstract data type."""
+"""Bag abstract data types."""
 
 from random import choice as _choice
 from typing import Any, Counter, Iterable, List, Optional
