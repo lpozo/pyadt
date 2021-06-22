@@ -99,6 +99,9 @@ class Queue:
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({list(self._data)})"
 
+    def __str__(self) -> str:
+        return self.__repr__()
+
     def __iter__(self) -> Iterator:
         yield from self._data
 
