@@ -26,9 +26,16 @@ def test_build(iterable, expected):
     assert len(b) == expected
 
 
-def test_build_args():
-    a = Queue("abcde", 3, [2, 4, 5], 6)
-    len(a) == 4
+@pytest.mark.parametrize(
+    "iterable, expected",
+    [
+        pytest.param([2, 4, 5, 6], 4),  # List
+        pytest.param("hello", 5),  # String
+    ],
+)
+def test_build_args(iterable, expected):
+    a = Queue(*iterable)
+    len(a) == expected
 
 
 @pytest.mark.parametrize(
