@@ -1,6 +1,6 @@
 """Matrix abstract data type."""
 
-from typing import Any, Tuple
+from typing import Any, List, Sequence, Tuple
 
 
 class Matrix:
@@ -11,12 +11,26 @@ class Matrix:
         self._cols = cols
         self._data = [[default] * cols for _ in range(rows)]
 
+    @classmethod
+    def from_sequence(
+        cls,
+        sequence: Sequence[Sequence[Any]],
+    ) -> "Matrix":
+        """Return a new matrix built from a sequence of sequences."""
+        if len(set(len(row) for row in sequence)) > 1:
+            raise ValueError("invalid matrix size")
+        matrix = cls(rows=len(sequence), cols=len(sequence[0]))
+        for row, values in enumerate(sequence):
+            for col, value in enumerate(values):
+                matrix[row, col] = value
+        return matrix
+
     @property
-    def rows(self):
+    def rows(self) -> int:
         return self._rows
 
     @property
-    def cols(self):
+    def cols(self) -> int:
         return self._cols
 
     def scale_by(self, scalar: int) -> None:
@@ -29,7 +43,7 @@ class Matrix:
         return self._rows, self._cols
 
     def transpose(self) -> "Matrix":
-        transposed = self.__class__(self._cols, self._rows)
+        transposed = type(self)(self._cols, self._rows)
         transposed._data = [list(row) for row in zip(*self._data)]
         return transposed
 
@@ -37,7 +51,7 @@ class Matrix:
         if not (other.__class__ is self.__class__):
             raise TypeError("can only add matrix to matrix")
         if other.size == self.size:
-            matrix = self.__class__(self._rows, self._cols)
+            matrix = type(self)(self._rows, self._cols)
             for row in range(self._rows):
                 for col in range(self._cols):
                     matrix[row, col] = self[row, col] + other[row, col]
@@ -48,7 +62,7 @@ class Matrix:
         if not (other.__class__ is self.__class__):
             raise TypeError("can only subtract matrix from matrix")
         if other.size == self.size:
-            matrix = self.__class__(self._rows, self._cols)
+            matrix = type(self)(self._rows, self._cols)
             for row in range(self._rows):
                 for col in range(self._cols):
                     matrix[row, col] = self[row, col] - other[row, col]
@@ -65,11 +79,17 @@ class Matrix:
     def mutiply(self, other) -> "Matrix":
         if not (other.__class__ is self.__class__):
             raise TypeError("can only multiply matrix by matrix")
-        if self._cols == other._rows:
-            matrix = self.__class__(self._rows, other._cols)
-            for row in range(1):
-                pass
-        raise ValueError("invalid matrix size")
+        if self._cols != other._rows:
+            raise ValueError("invalid matrix size")
+
+        matrix = type(self)(self.rows, other.cols)
+        for i in range(self.rows):
+            # iterate through columns of Y
+            for j in range(other.cols):
+                # iterate through rows of Y
+                for k in range(other.rows):
+                    matrix[i, j] += self[i, k] * other[k, j]
+        return matrix
 
     def __repr__(self) -> str:
         return (
@@ -93,3 +113,7 @@ class Matrix:
         if not 0 <= col < self._cols:
             raise IndexError("Column index out of range")
         return index
+
+
+m = Matrix.from_sequence([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+print(m)
