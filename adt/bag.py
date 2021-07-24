@@ -17,16 +17,10 @@ class Bag:
     4
     """
 
-    def __init__(
-        self, iterable: Optional[Iterable[Any]] = None, /, *args
-    ) -> None:
+    def __init__(self, iterable: Optional[Iterable[Any]] = None, /) -> None:
         self._data: List[Any] = []
         if iterable is not None:
-            try:
-                self._data.extend(iterable)
-            except TypeError:
-                self._data.extend([iterable])
-        self._data.extend(args)
+            self._data.extend(iterable)
 
     def add(self, value: Any) -> None:
         """Add an object to the Bag.
@@ -67,8 +61,39 @@ class Bag:
         1
         >>> b.count(2)
         2
+        >>> b.count(3)
+        0
         """
         return self._data.count(value)
+
+    def clear(self) -> None:
+        """Remove all the objects from the Bag.
+
+        >>> b = Bag([1, 2, 2])
+        >>> b.clear()
+        >>> b
+        Bag([])
+        """
+        self._data.clear()
+
+    def pop(self) -> Any:
+        """Pop an object from the right end of the Bag.
+
+        >>> b = Bag([1, 2, 3])
+        >>> b.pop() == 3
+        True
+        >>> b.pop() == 2
+        True
+        >>> b.pop() == 1
+        True
+        >>> b.pop()
+        Traceback (most recent call last):
+        IndexError: pop from empty bag
+        """
+        try:
+            return self._data.pop()
+        except IndexError:
+            raise IndexError("pop from empty bag") from None
 
     def randpop(self) -> Any:
         """Pop a random object from the Bag.
@@ -77,7 +102,10 @@ class Bag:
         >>> b.randpop() in {1, 2, 3}
         True
         """
-        value: Any = _choice(self._data)
+        try:
+            value: Any = _choice(self._data)
+        except IndexError:
+            raise IndexError("randpop from empty bag") from None
         self._data.remove(value)
         return value
 
