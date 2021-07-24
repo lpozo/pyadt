@@ -25,16 +25,10 @@ class Queue:
     1
     """
 
-    def __init__(
-        self, iterable: Optional[Iterable[Any]] = None, /, *args
-    ) -> None:
+    def __init__(self, iterable: Optional[Iterable[Any]] = None, /) -> None:
         self._data: deque = deque()
         if iterable is not None:
-            try:
-                self._data.extend(iterable)
-            except TypeError:
-                self._data.extend([iterable])
-        self._data.extend(args)
+            self._data.extend(iterable)
 
     def enqueue(self, item: Any) -> None:
         """Add items to the right end of the queue.
@@ -75,7 +69,7 @@ class Queue:
     def remove(self, item: Any) -> None:
         """Remove the first occurrence of item.
 
-        >>> q = Queue(1, 2, 3)
+        >>> q = Queue([1, 2, 3])
         >>> q.remove(2)
         >>> q
         Queue([1, 3])
