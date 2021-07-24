@@ -26,36 +26,6 @@ def test_build(iterable, expected):
     assert len(b) == expected
 
 
-@pytest.mark.parametrize(
-    "iterable, expected",
-    [
-        pytest.param([2, 4, 5, 6], 4),  # List
-        pytest.param("hello", 5),  # String
-    ],
-)
-def test_build_args(iterable, expected):
-    a = Queue(*iterable)
-    len(a) == expected
-
-
-@pytest.mark.parametrize(
-    "item, expected",
-    [pytest.param("h", True), pytest.param("a", False)],
-)
-def test_contains(item, expected, get_hello_queue):
-    assert (item in get_hello_queue) == expected
-
-
-def test_repr(get_hello_queue):
-    string_io = StringIO()
-    with redirect_stdout(string_io):
-        print(get_hello_queue)
-    assert (
-        f"{get_hello_queue.__class__.__name__}(['h', 'e', 'l', 'l', 'o'])\n"
-        in string_io.getvalue()
-    )
-
-
 def test_enqueue():
     q = Queue()
     for i in range(10):
@@ -80,9 +50,27 @@ def test_remove(get_hello_queue):
     assert not ("h" in get_hello_queue)
 
 
-def test_remove_empty(get_hello_queue):
+def test_remove_missing(get_hello_queue):
     with pytest.raises(ValueError):
         get_hello_queue.remove("a")
+
+
+@pytest.mark.parametrize(
+    "item, expected",
+    [pytest.param("h", True), pytest.param("a", False)],
+)
+def test_contains(item, expected, get_hello_queue):
+    assert (item in get_hello_queue) == expected
+
+
+def test_repr(get_hello_queue):
+    string_io = StringIO()
+    with redirect_stdout(string_io):
+        print(get_hello_queue)
+    assert (
+        f"{get_hello_queue.__class__.__name__}(['h', 'e', 'l', 'l', 'o'])\n"
+        in string_io.getvalue()
+    )
 
 
 def test_iteration(get_hello_queue):
