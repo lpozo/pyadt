@@ -6,14 +6,9 @@ Abstract data types implemented in Python as a learning exercise.
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
 
-  - [Array](#array)
   - [Bag](#bag)
-  - [Queue](#queue)
   - [Authors](#authors)
   - [License](#license)
-
-## Array
-
 
 ## Bag (multisets)
 
@@ -30,8 +25,6 @@ This implementation defines the following operations:
 - `bag.count(item)`
 
 It also support iteration and reverse iteration.
-
-## Queue
 
 ## Authors
 
