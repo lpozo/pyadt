@@ -4,7 +4,7 @@ from contextlib import redirect_stdout
 from io import StringIO
 
 import pytest
-from adt.queue import Queue
+from pyadt import Queue
 
 
 @pytest.fixture
