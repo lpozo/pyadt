@@ -39,6 +39,16 @@ def test_dequeue(get_hello_queue):
     assert len(get_hello_queue) == 0
 
 
+def test_front(get_hello_queue):
+    assert get_hello_queue.front() == "h"
+
+
+def test_front_empty():
+    q = Queue()
+    with pytest.raises(IndexError):
+        q.front()
+
+
 def test_dequeue_empty():
     q = Queue()
     with pytest.raises(IndexError):
@@ -77,5 +87,5 @@ def test_iteration(get_hello_queue):
     assert list(get_hello_queue) == ["h", "e", "l", "l", "o"]
 
 
-def test_reversed(get_hello_queue):
+def test_reverse_iteration(get_hello_queue):
     assert list(reversed(get_hello_queue)) == ["o", "l", "l", "e", "h"]
