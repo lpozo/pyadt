@@ -41,4 +41,4 @@ jobs:
     - name: Test with pytest
       run: |
         pytest tests/
-        python -m doctest adt/*.py
+        python -m doctest pyadt/bag.py pyadt/queue.py pyadt/array.py

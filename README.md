@@ -5,10 +5,22 @@ Basic Python implementation for several Abstract data types. Just a learning exe
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
+  - [Array](#array)
   - [Bag (multisets)](#bag-multisets)
   - [Queue](#queue)
-  - [Authors](#authors)
-  - [License](#license)
+
+## Array
+
+A one-dimensional array is a sequence of items stored in contiguous memory locations. They allow random access to the individual items. They must contain data of the same type and have a fixed size that can't vary during the array lifetime.
+
+This implementation uses a `ctypes.py_object` to store and manage the data. It defines the following operations:
+
+- `array[index]`
+- `array[index] = value`
+- `array.clear()`
+- `len(array)`
+
+It also supports iteration and reverse iteration.
 
 ## Bag (multisets)
 
