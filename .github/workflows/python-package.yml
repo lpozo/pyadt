@@ -42,4 +42,4 @@ jobs:
       run: |
         pytest tests/
         cd pyadt
-        python -m doctest ./*.py
+        python -m doctest *.py
