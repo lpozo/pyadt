@@ -1,15 +1,20 @@
 # Abstract Data Types in Python
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+![Python Package](https://github.com/lpozo/pydata-structures/actions/workflows/python-package.yml/badge.svg)
 
 Basic Python implementation for several Abstract data types. Just a learning exercise.
 
 ## Table of Content
 
-- [Array](#array)
-- [Bag (multisets)](#bag-multisets)
-- [Queue](#queue)
-- [Stack](#stack)
+- [Abstract Data Types in Python](#abstract-data-types-in-python)
+  - [Table of Content](#table-of-content)
+  - [Array](#array)
+  - [Bag (multisets)](#bag-multisets)
+  - [Queue](#queue)
+  - [Stack](#stack)
+  - [Authors](#authors)
+  - [License](#license)
 
 ## Array
 
