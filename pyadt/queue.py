@@ -104,7 +104,7 @@ class Queue:
         >>> q = Queue()
         >>> q.is_empty()
         True
-        >>> q.push(1)
+        >>> q.enqueue(1)
         >>> q.is_empty()
         False
         """
