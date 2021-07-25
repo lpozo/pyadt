@@ -1,6 +1,6 @@
 """Provide the pyadt package."""
 
-from .array import Array, Array2D
+from .array import Array
 from .bag import Bag
 from .queue import Queue
 
