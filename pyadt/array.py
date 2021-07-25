@@ -1,4 +1,4 @@
-"""Array abstract data types."""
+"""Array abstract data type."""
 
 import ctypes
 from typing import Any, Generator, Optional
@@ -42,6 +42,9 @@ class Array:
 
     def __len__(self) -> int:
         return self._size
+
+    def __contain__(self, value):
+        return value in self._data
 
     def __getitem__(self, index: int) -> Any:
         try:

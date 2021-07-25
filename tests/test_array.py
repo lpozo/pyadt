@@ -30,3 +30,10 @@ def test_reversed():
     for i in range(len(a)):
         a[i] = i
     assert list(reversed(a)) == [4, 3, 2, 1, 0]
+
+
+def test_contain():
+    a = Array(5)
+    for i in range(len(a)):
+        a[i] = i
+    assert 3 in a

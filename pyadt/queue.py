@@ -66,6 +66,20 @@ class Queue:
         except IndexError:
             raise IndexError("dequeue from an empty queue") from None
 
+    def front(self) -> Any:
+        """Return the item at the beginning of the queue.
+
+        >>> q = Queue([1, 2, 3])
+        >>> q.front()
+        1
+        >>> q
+        Queue([1, 2, 3])
+        """
+        try:
+            return self._data[0]
+        except IndexError:
+            raise IndexError("front from an empty queue") from None
+
     def remove(self, item: Any) -> None:
         """Remove the first occurrence of item.
 
@@ -84,10 +98,22 @@ class Queue:
                 f"{self.__class__.__name__}.remove(x): x not found"
             ) from None
 
+    def is_empty(self) -> bool:
+        """Return True if the queue is empty, False otherwise.
+
+        >>> q = Queue()
+        >>> q.is_empty()
+        True
+        >>> q.enqueue(1)
+        >>> q.is_empty()
+        False
+        """
+        return len(self._data) == 0
+
     def __len__(self) -> int:
         return len(self._data)
 
-    def __contains__(self, item):
+    def __contains__(self, item) -> bool:
         return item in self._data
 
     def __repr__(self) -> str:
