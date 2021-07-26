@@ -64,9 +64,16 @@ This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.h
 | `matrix.scale_by(scalar)`             | Scale the whole `matrix` by `scalar`.                        |
 | `matrix.transpose()`                  | Return a new matrix, which is the transpose of `matrix`.     |
 | `matrix.add(other)`                   | Return a new matrix, which is the addition of `matrix` and `other`. |
+| `matrix + other`                      | Return a new matrix, which is the addition of `matrix` and `other`. |
 | `matrix.subtract(other)`              | Return a new matrix, which is the subtraction of `matrix` and `other`. |
+| `matrix - other`                      | Return a new matrix, which is the subtraction of `matrix` and `other`. |
 | `matrix.multipy(other)`               | Return a new matrix, which is the multiplication of `matrix` and `other`. |
+| `matrix * other`                      | Return a new matrix, which is the multiplication of `matrix` and `other`. |
+| `matrix[i, j]`                        | Retrieve the value at cell `(i, j)` from `matrix`.           |
+| `matrix[i, j] = value`                | Assign `value` to the cell `(i, j)` of `matrix`.             |
 | `Matrix.from_list_of_lists(iterable)` | Build a new matrix from a list of lists. It's a class method. |
+
+It doesn't support direct iteration.
 
 ## Queue
 
