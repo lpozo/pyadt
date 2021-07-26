@@ -49,6 +49,24 @@ This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.h
 
 It also supports iteration and reverse iteration.
 
+## Matrix
+
+A [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) is a collection of numbers arranged in rows and columns as a rectangular grid of a fixed size. Matrices are quite useful in several areas, such as [linear algebra](https://en.wikipedia.org/wiki/Linear_algebra) and [computer graphics](https://en.wikipedia.org/wiki/Computer_graphics). You can use matrices for representing and solving systems of [linear equations](https://en.wikipedia.org/wiki/Linear_equation), for example.
+
+This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.html#list) to store and manage the data. It defines the following operations:
+
+| Operation                             | Description                                                  |
+| ------------------------------------- | ------------------------------------------------------------ |
+| `matrix.rows`                         | Return the number of rows in `matrix`.                       |
+| `matrix.cols`                         | Return the number of columns in `matrix`.                    |
+| `matrix.size`                         | Return the size of `matrix` as a tuple of `cols` and `rows`. |
+| `matrix.scale_by(scalar)`             | Scale the whole `matrix` by `scalar`.                        |
+| `matrix.transpose()`                  | Return a new matrix, which is the transpose of `matrix`.     |
+| `matrix.add(other)`                   | Return a new matrix, which is the addition of `matrix` and `other`. |
+| `matrix.subtract(other)`              | Return a new matrix, which is the subtraction of `matrix` and `other`. |
+| `matrix.multipy(other)`               | Return a new matrix, which is the multiplication of `matrix` and `other`. |
+| `Matrix.from_list_of_lists(iterable)` | Build a new matrix from a list of lists. It's a class method. |
+
 ## Queue
 
 A queue is a [collection](https://en.wikipedia.org/wiki/Collection_(abstract_data_type)) of items. You can modify queues by adding items at one end and removing items from the opposite end.
