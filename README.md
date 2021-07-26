@@ -12,6 +12,7 @@ Basic Python implementation for several Abstract data types. Just a learning exe
 
 - [Array](#array)
 - [Bag (multisets)](#bag-multisets)
+- [Matrix](#matrix)
 - [Queue](#queue)
 - [Stack](#stack)
 
