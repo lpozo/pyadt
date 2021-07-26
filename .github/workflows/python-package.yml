@@ -40,4 +40,4 @@ jobs:
     - name: Run automated tests
       run: |
         pytest tests/
-        python -m doctest pyadt/bag.py pyadt/queue.py pyadt/array.py pyadt/stack.py
+        python -m doctest pyadt/bag.py pyadt/queue.py pyadt/array.py pyadt/stack.py pyadt/matrix.py
