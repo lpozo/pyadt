@@ -3,7 +3,7 @@
 from operator import add, sub
 from typing import Any, Callable, List, NamedTuple, Tuple
 
-from utils import validate_index
+from pyadt.utils import validate_index
 
 
 class Size(NamedTuple):
@@ -108,6 +108,9 @@ class Matrix:
         >>> print(n)
         Matrix([12, 12, 12] [12, 12, 12] [12, 12, 12])
         """
+        return self.__add__(other)
+
+    def __add__(self, other: "Matrix") -> "Matrix":
         return self._compute(other, operation=add)
 
     def _compute(self, other: "Matrix", operation: Callable):
@@ -133,6 +136,9 @@ class Matrix:
         >>> print(n)
         Matrix([8, 8, 8] [8, 8, 8] [8, 8, 8])
         """
+        return self.__sub__(other)
+
+    def __sub__(self, other: "Matrix") -> "Matrix":
         return self._compute(other, operation=sub)
 
     def multiply(self, other: "Matrix") -> "Matrix":
@@ -148,6 +154,9 @@ class Matrix:
         >>> print(r)
         Matrix([9, 1, 0] [39, 17, 16] [69, 33, 32])
         """
+        return self.__mul__(other)
+
+    def __mul__(self, other: "Matrix") -> "Matrix":
         if not (other.__class__ is self.__class__):
             raise TypeError("matrix object expected")
         if self.cols != other.rows:
