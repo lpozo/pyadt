@@ -15,6 +15,7 @@ Basic Python implementation for several Abstract data types. Just a learning exe
 - [Matrix](#matrix)
 - [Queue](#queue)
 - [Stack](#stack)
+- [Singly Linked List](#singly-linked-list)
 
 ## Array
 
@@ -22,12 +23,13 @@ A one-dimensional array is a sequence of items stored in contiguous memory locat
 
 This implementation uses a `ctypes.py_object` to store and manage the data. It defines the following operations:
 
-| Operation              | Description                                                   |
-| ---------------------- | ------------------------------------------------------------- |
-| `array[index]`         | Retrieve the item at `index`.                                 |
-| `array[index] = value` | Assign `value` to the item at `index`.                        |
-| `array.clear()`        | Remove all the items form the `array`.                        |
-| `len(array)`           | Return the length of the `array`.                             |
+| Operation              | Description                                                  |
+| ---------------------- | ------------------------------------------------------------ |
+| `array = Array(size)`  | Build an array that can hold `size` itmes.                   |
+| `array[index]`         | Retrieve the item at `index`.                                |
+| `array[index] = value` | Assign `value` to the item at `index`.                       |
+| `array.clear()`        | Remove all the items form the `array`.                       |
+| `len(array)`           | Return the length of the `array`.                            |
 | `item in array`        | Return `True` if `item` exists in `array`, `False` otherwise. |
 
 It also supports iteration and reverse iteration.
@@ -38,15 +40,17 @@ A bag, also known as [multiset](https://en.wikipedia.org/wiki/Multiset), is a co
 
 This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.html#list) to store and manage the data. It defines the following operations:
 
-| Operation          | Description                                                 |
-| ------------------ | ----------------------------------------------------------- |
-| `bag.add(item)`    | Add `item` the to `bag`.                                    |
-| `bag.remove(item)` | Remove `item` from `bag`.                                   |
-| `bag.pop()`        | Pop an item from the right end of `bag`.                    |
-| `bag.clear()`      | Remove all the items from `bag`.                            |
-| `len(bag)`         | Return the length of the `bag`.                             |
-| `item in bag`      | Return `True` if `item` exists in `bag`, `False` otherwise. |
-| `bag.count(item)`  | Conut the frequncy of `item` in the `bag`.                  |
+| Operation             | Description                                                 |
+| --------------------- | ----------------------------------------------------------- |
+| `bag = Bag()`         | Build an empty `bag`.                                       |
+| `bag = Bag(iterable)` | Build a `bag` with items from iterable.                     |
+| `bag.add(item)`       | Add `item` the to `bag`.                                    |
+| `bag.remove(item)`    | Remove `item` from `bag`.                                   |
+| `bag.pop()`           | Pop an item from the right end of `bag`.                    |
+| `bag.clear()`         | Remove all the items from `bag`.                            |
+| `len(bag)`            | Return the length of the `bag`.                             |
+| `item in bag`         | Return `True` if `item` exists in `bag`, `False` otherwise. |
+| `bag.count(item)`     | Conut the frequncy of `item` in the `bag`.                  |
 
 It also supports iteration and reverse iteration.
 
@@ -56,22 +60,24 @@ A [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) is a collection o
 
 This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.html#list) to store and manage the data. It defines the following operations:
 
-| Operation                             | Description                                                  |
-| ------------------------------------- | ------------------------------------------------------------ |
-| `matrix.rows`                         | Return the number of rows in `matrix`.                       |
-| `matrix.cols`                         | Return the number of columns in `matrix`.                    |
-| `matrix.size`                         | Return the size of `matrix` as a tuple of `cols` and `rows`. |
-| `matrix.scale_by(scalar)`             | Scale the whole `matrix` by `scalar`.                        |
-| `matrix.transpose()`                  | Return a new matrix, which is the transpose of `matrix`.     |
-| `matrix.add(other)`                   | Return a new matrix, which is the addition of `matrix` and `other`. |
-| `matrix + other`                      | Return a new matrix, which is the addition of `matrix` and `other`. |
-| `matrix.subtract(other)`              | Return a new matrix, which is the subtraction of `matrix` and `other`. |
-| `matrix - other`                      | Return a new matrix, which is the subtraction of `matrix` and `other`. |
-| `matrix.multipy(other)`               | Return a new matrix, which is the multiplication of `matrix` and `other`. |
-| `matrix * other`                      | Return a new matrix, which is the multiplication of `matrix` and `other`. |
-| `matrix[i, j]`                        | Retrieve the value at cell `(i, j)` from `matrix`.           |
-| `matrix[i, j] = value`                | Assign `value` to the cell `(i, j)` of `matrix`.             |
-| `Matrix.from_list_of_lists(iterable)` | Build a new matrix from a list of lists. It's a class method. |
+| Operation                              | Description                                                  |
+| -------------------------------------- | ------------------------------------------------------------ |
+| `matrix = Matrix(rows, cols)`          | Build a `matrix` of size `rows` x `cols`.                    |
+| `matrix = Matrix(rows, cols, default)` | Build a `matrix` of size `rows` x `cols`, which values default to `default`. |
+| `matrix.rows`                          | Return the number of rows in `matrix`.                       |
+| `matrix.cols`                          | Return the number of columns in `matrix`.                    |
+| `matrix.size`                          | Return the size of `matrix` as a tuple of `cols` and `rows`. |
+| `matrix.scale_by(scalar)`              | Scale the whole `matrix` by `scalar`.                        |
+| `matrix.transpose()`                   | Return a new matrix, which is the transpose of `matrix`.     |
+| `matrix.add(other)`                    | Return a new matrix, which is the addition of `matrix` and `other`. |
+| `matrix + other`                       | Return a new matrix, which is the addition of `matrix` and `other`. |
+| `matrix.subtract(other)`               | Return a new matrix, which is the subtraction of `matrix` and `other`. |
+| `matrix - other`                       | Return a new matrix, which is the subtraction of `matrix` and `other`. |
+| `matrix.multipy(other)`                | Return a new matrix, which is the multiplication of `matrix` and `other`. |
+| `matrix * other`                       | Return a new matrix, which is the multiplication of `matrix` and `other`. |
+| `matrix[i, j]`                         | Retrieve the value at cell `(i, j)` from `matrix`.           |
+| `matrix[i, j] = value`                 | Assign `value` to the cell `(i, j)` of `matrix`.             |
+| `Matrix.from_list_of_lists(iterable)`  | Build a new matrix from a list of lists. It's a class method. |
 
 It doesn't support direct iteration.
 
@@ -83,15 +89,17 @@ Queues manage their items in a **first in**, **first out** ([FIFO](https://en.wi
 
 This implementation uses a [`collections.deque`](https://docs.python.org/3/library/collections.html?highlight=collections#collections.deque) to store and manage the data. It defines the following operations:
 
-| Operation             | Description                                                        |
-| --------------------- | ------------------------------------------------------------------ |
-| `queue.enqueue(item)` | Add `item` to the right end of the `queue`.                        |
-| `queue.dequeue()`     | Pop the item at the left end of the `queue`.                       |
-| `queue.remove(item)`  | Remove `item` from the `queue`.                                    |
-| `queue.is_empty()`    | Return `True` if the `queue` is empty, `False` otherwise.          |
-| `queue.front()`       | Return the item at the left end of the `queue` without popping it. |
-| `len(queue)`          | Return the length of the `queue`.                                  |
-| `item in queue`       | Return `True` if `item` exists in `queue`, `False` otherwise.      |
+| Operation                 | Description                                                  |
+| ------------------------- | ------------------------------------------------------------ |
+| `queue = Queue()`         | Build an empty `queue`.                                      |
+| `queue = Queue(iterable)` | Build a `queue` with items from `iterable`.                  |
+| `queue.enqueue(item)`     | Add `item` to the right end of the `queue`.                  |
+| `queue.dequeue()`         | Pop the item at the left end of the `queue`.                 |
+| `queue.remove(item)`      | Remove `item` from the `queue`.                              |
+| `queue.is_empty()`        | Return `True` if the `queue` is empty, `False` otherwise.    |
+| `queue.front()`           | Return the item at the left end of the `queue` without popping it. |
+| `len(queue)`              | Return the length of the `queue`.                            |
+| `item in queue`           | Return `True` if `item` exists in `queue`, `False` otherwise. |
 
 It also supports iteration and reverse iteration.
 
@@ -101,21 +109,40 @@ A [stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) is a data st
 
 This implementation uses a [`collections.deque`](https://docs.python.org/3/library/collections.html?highlight=collections#collections.deque) to store and manage the data. It defines the following operations:
 
-| Operation          | Description                                                   |
-| ------------------ | ------------------------------------------------------------- |
-| `stack.push(item)` | Push `item` onto the top of the `stack`.                      |
-| `stack.pop()`      | Pop the item at the top of the `stack`.                       |
-| `stack.top()`      | Return the item at the top of the `stack` without popping it. |
-| `stack.is_empty()` | Return `True` if the `stack` is empty, `False` otherwise.     |
-| `len(stack)`       | Return the length of the `stack`.                             |
-| `item in stack`    | Return `True` if `item` exists in `stack`, `False` otherwise. |
+| Operation                 | Description                                                  |
+| ------------------------- | ------------------------------------------------------------ |
+| `stack = Stack()`         | Build an empty `stack`.                                      |
+| `stack = Stack(iterable)` | Build a `stack` with items from `iterable`.                  |
+| `stack.push(item)`        | Push `item` onto the top of the `stack`.                     |
+| `stack.pop()`             | Pop the item at the top of the `stack`.                      |
+| `stack.top()`             | Return the item at the top of the `stack` without popping it. |
+| `stack.is_empty()`        | Return `True` if the `stack` is empty, `False` otherwise.    |
+| `len(stack)`              | Return the length of the `stack`.                            |
+| `item in stack`           | Return `True` if `item` exists in `stack`, `False` otherwise. |
 
 It also supports iteration and reverse iteration.
 
+### Singly Liked List
+
+A [linked list](https://en.wikipedia.org/wiki/Linked_list) is a linear collection of data where each item in the list is stored in a separate [node](https://en.wikipedia.org/wiki/Node_(computer_science)). A node stores two pieces of information: a data item and a reference to the next node in the linked list, often called `.next`.
+
+The order of nodes doesn't follow a sequnce of contigous physical memory locations. Nodes are linked in a chain, in which each node holds a reference to the next one.
+
+This implementation defines the following operations:
+
+| Operation                    | Description                                             |
+| ---------------------------- | ------------------------------------------------------- |
+| `llist.append_left(value)`   | Add a node holding `value` to the left end of `llist`.  |
+| `llist.append(value)`        | Add a node holding `value` to the right end of `llist`. |
+| `llist.insert(index, value)` | Insert a node holding `value` at `index`.               |
+| `llist.remove(value)`        | Remove the node holding `value` from `llist`.           |
+| `llist.reverse()`            | Reverse the `llist` in place.                           |
+
+It also supports iteration.
+
 ## Authors
 
-- Leodanis Pozo Ramos
-- GitHub: [@lpozo](https://www.github.com/lpozo)
+- Leodanis Pozo Ramos -> GitHub: [@lpozo](https://www.github.com/lpozo) -> Twitter: [@lpozo78](https://twitter.com/lpozo78) -> Web: <https://leodanispozo.netlify.app>
 
 ## License
 
