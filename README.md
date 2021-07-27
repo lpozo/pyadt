@@ -25,7 +25,7 @@ This implementation uses a `ctypes.py_object` to store and manage the data. It d
 
 | Operation              | Description                                                  |
 | ---------------------- | ------------------------------------------------------------ |
-| `array = Array(size)`  | Build an array that can hold `size` itmes.                   |
+| `array = Array(size)`  | Build an array that can hold `size` items.                   |
 | `array[index]`         | Retrieve the item at `index`.                                |
 | `array[index] = value` | Assign `value` to the item at `index`.                       |
 | `array.clear()`        | Remove all the items form the `array`.                       |
@@ -50,7 +50,7 @@ This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.h
 | `bag.clear()`         | Remove all the items from `bag`.                            |
 | `len(bag)`            | Return the length of the `bag`.                             |
 | `item in bag`         | Return `True` if `item` exists in `bag`, `False` otherwise. |
-| `bag.count(item)`     | Conut the frequncy of `item` in the `bag`.                  |
+| `bag.count(item)`     | Count the frequency of `item` in the `bag`.                  |
 
 It also supports iteration and reverse iteration.
 
@@ -73,7 +73,7 @@ This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.h
 | `matrix + other`                       | Return a new matrix, which is the addition of `matrix` and `other`. |
 | `matrix.subtract(other)`               | Return a new matrix, which is the subtraction of `matrix` and `other`. |
 | `matrix - other`                       | Return a new matrix, which is the subtraction of `matrix` and `other`. |
-| `matrix.multipy(other)`                | Return a new matrix, which is the multiplication of `matrix` and `other`. |
+| `matrix.multiply(other)`                | Return a new matrix, which is the multiplication of `matrix` and `other`. |
 | `matrix * other`                       | Return a new matrix, which is the multiplication of `matrix` and `other`. |
 | `matrix[i, j]`                         | Retrieve the value at cell `(i, j)` from `matrix`.           |
 | `matrix[i, j] = value`                 | Assign `value` to the cell `(i, j)` of `matrix`.             |
@@ -126,7 +126,7 @@ It also supports iteration and reverse iteration.
 
 A [linked list](https://en.wikipedia.org/wiki/Linked_list) is a linear collection of data where each item in the list is stored in a separate [node](https://en.wikipedia.org/wiki/Node_(computer_science)). A node stores two pieces of information: a data item and a reference to the next node in the linked list, often called `.next`.
 
-The order of nodes doesn't follow a sequnce of contigous physical memory locations. Nodes are linked in a chain, in which each node holds a reference to the next one.
+The order of nodes doesn't follow a sequence of contiguous physical memory locations. Nodes are linked in a chain, in which each node holds a reference to the next one.
 
 This implementation defines the following operations:
 
