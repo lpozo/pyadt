@@ -122,7 +122,7 @@ This implementation uses a [`collections.deque`](https://docs.python.org/3/libra
 
 It also supports iteration and reverse iteration.
 
-### Singly Liked List
+## Singly Liked List
 
 A [linked list](https://en.wikipedia.org/wiki/Linked_list) is a linear collection of data where each item in the list is stored in a separate [node](https://en.wikipedia.org/wiki/Node_(computer_science)). A node stores two pieces of information: a data item and a reference to the next node in the linked list, often called `.next`.
 
