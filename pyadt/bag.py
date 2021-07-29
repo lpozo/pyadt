@@ -140,5 +140,4 @@ class Bag:
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self._data})"
 
-    def __str__(self) -> str:
-        return self.__repr__()
+    __str__ = __repr__
