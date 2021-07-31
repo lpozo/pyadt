@@ -42,11 +42,7 @@ def test_remove(get_hello_bag):
 
 @pytest.mark.parametrize(
     "value, expected",
-    [
-        pytest.param("l", 2),
-        pytest.param("h", 1),
-        pytest.param("a", 0),
-    ],
+    [pytest.param("l", 2), pytest.param("h", 1), pytest.param("a", 0)],
 )
 def test_count(get_hello_bag, value, expected):
     assert get_hello_bag.count(value) == expected
@@ -90,8 +86,7 @@ def test_as_counter_unhashable():
 
 
 @pytest.mark.parametrize(
-    "item, expected",
-    [pytest.param("h", True), pytest.param("a", False)],
+    "item, expected", [pytest.param("h", True), pytest.param("a", False)]
 )
 def test_contains(item, expected, get_hello_bag):
     assert (item in get_hello_bag) == expected
