@@ -1,6 +1,7 @@
 """Test matrix.py."""
 
 from random import randint
+
 import pytest
 
 from pyadt import Matrix
