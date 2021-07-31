@@ -1,7 +1,7 @@
 """Stack abstract data type."""
 
 from collections import deque
-from typing import Any, Optional, Iterator
+from typing import Any, Iterator, Optional
 
 
 class Stack:

@@ -4,6 +4,7 @@ from contextlib import redirect_stdout
 from io import StringIO
 
 import pytest
+
 from pyadt import Stack
 
 
