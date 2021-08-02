@@ -26,11 +26,23 @@ class LinkedList:
         LinkedList([1, 2, 3])
         >>> ll.head
         1
+        >>> print(ll)
+        HEAD(1) -> 2 -> 3 -> None
+
+        >>> ll = LinkedList()
+        >>> ll
+        LinkedList([])
+
+        >>> ll = LinkedList([])
+        >>> print(ll)
+        HEAD(None)
         """
         self.head: Optional[Node] = None
+        self._length: int = 0
 
-        if data is not None:
+        if data is not None and (length := len(data)) > 0:
             head, *rest = data
+            self._length = length
             self.head = Node(data=head)
             node = self.head
             for value in rest:
@@ -48,6 +60,7 @@ class LinkedList:
         node = Node(data=value)
         node.next = self.head
         self.head = node
+        self._length += 1
 
     def append(self, value: Any) -> None:
         """Add a node holding value to the right end of the linked list.
@@ -66,6 +79,8 @@ class LinkedList:
             for last_node in self:
                 pass
             last_node.next = node
+
+        self._length += 1
 
     def insert(self, index: int, value: Any) -> None:
         """Insert a node holding value at index.
@@ -95,6 +110,7 @@ class LinkedList:
             if i == index:
                 previous_node.next = node
                 node.next = current_node
+                self._length += 1
                 return
             previous_node = current_node
 
@@ -138,6 +154,7 @@ class LinkedList:
         for current_node in self:
             if current_node.data == value:
                 previous_node.next = current_node.next
+                self._length -= 1
                 return
             previous_node = current_node
 
@@ -176,21 +193,24 @@ class LinkedList:
             yield node
             node = node.next
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
+        nodes = self._nodes_as_list()
+        return f"{self.__class__.__name__}({nodes})"
+
+    def _nodes_as_list(self):
         node = self.head
         nodes = []
         while node is not None:
             nodes.append(node.data)
             node = node.next
+        return nodes
+
+    def __str__(self) -> str:
+        nodes = [str(data) for data in self._nodes_as_list()]
         nodes.append("None")
         if len(nodes) == 1:
             return f"HEAD({nodes[0]})"
         return f"HEAD({nodes[0]}) -> " + " -> ".join(nodes[1:])
 
-    def __repr__(self) -> str:
-        node = self.head
-        nodes = []
-        while node is not None:
-            nodes.append(node.data)
-            node = node.next
-        return f"{self.__class__.__name__}({nodes})"
+    def __len__(self):
+        return self._length

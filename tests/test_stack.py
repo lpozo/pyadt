@@ -57,8 +57,7 @@ def test_top_empty():
 
 
 @pytest.mark.parametrize(
-    "item, expected",
-    [pytest.param("h", True), pytest.param("a", False)],
+    "item, expected", [pytest.param("h", True), pytest.param("a", False)]
 )
 def test_contains(item, expected, get_hello_stack):
     assert (item in get_hello_stack) == expected

@@ -67,8 +67,7 @@ def test_remove_missing(get_hello_queue):
 
 
 @pytest.mark.parametrize(
-    "item, expected",
-    [pytest.param("h", True), pytest.param("a", False)],
+    "item, expected", [pytest.param("h", True), pytest.param("a", False)]
 )
 def test_contains(item, expected, get_hello_queue):
     assert (item in get_hello_queue) == expected
