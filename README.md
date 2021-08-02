@@ -122,7 +122,7 @@ This implementation uses a [`collections.deque`](https://docs.python.org/3/libra
 
 It also supports iteration and reverse iteration.
 
-## Singly Liked List
+## Singly Linked List
 
 A [linked list](https://en.wikipedia.org/wiki/Linked_list) is a linear collection of data where each item in the list is stored in a separate [node](https://en.wikipedia.org/wiki/Node_(computer_science)). A node stores two pieces of information: a data item and a reference to the next node in the linked list, often called `.next`.
 
@@ -137,6 +137,7 @@ This implementation defines the following operations:
 | `llist.insert(index, value)` | Insert a node holding `value` at `index`.               |
 | `llist.remove(value)`        | Remove the node holding `value` from `llist`.           |
 | `llist.reverse()`            | Reverse the `llist` in place.                           |
+| `len(llist)`                 | Return the number of nodes in `llist`.                  |
 
 It also supports iteration.
 
