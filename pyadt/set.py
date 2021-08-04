@@ -1,6 +1,6 @@
 """Set abstract data type."""
 
-from typing import Any, Iterator, Sequence, List, Optional
+from typing import Any, Iterator, List, Optional, Sequence
 
 
 class Set:
