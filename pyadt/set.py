@@ -23,7 +23,7 @@ class Set:
     Set([1, 2, 3])
     """
 
-    def __init__(self, iterable: Optional[Sequence[Any]] = None) -> None:
+    def __init__(self, iterable: Optional[Sequence[Any]] = None, /) -> None:
         self._data: List[Any] = []
         if iterable is not None and len(iterable) > 0:
             for element in iterable:
@@ -45,20 +45,6 @@ class Set:
 
     __add = add  # Avoid breaking the class by a subclasser
 
-    def update(self, other: "Set") -> None:
-        """Update set with elements from other.
-
-        >>> s = Set([1, 2, 3])
-        >>> o = Set([4, 5, 6])
-        >>> s.update(o)
-        >>> s
-        Set([1, 2, 3, 4, 5, 6])
-        """
-        if not (other.__class__ is self.__class__):
-            raise TypeError("set object expected")
-        for element in other:
-            self.__add(element)
-
     def remove(self, element: Any) -> None:
         """Remove an element from set.
 
@@ -76,7 +62,7 @@ class Set:
             raise KeyError(f"{element} not in set") from None
 
     def discard(self, element: Any) -> None:
-        """Remove element from set if it's present.
+        """Remove element from set if present.
 
         >>> s = Set([1, 2])
         >>> s.discard(1)
@@ -116,6 +102,20 @@ class Set:
         >>> s.clear()
         """
         self._data.clear()
+
+    def update(self, other: "Set") -> None:
+        """Update set with elements from other.
+
+        >>> s = Set([1, 2, 3])
+        >>> o = Set([4, 5, 6])
+        >>> s.update(o)
+        >>> s
+        Set([1, 2, 3, 4, 5, 6])
+        """
+        if not (other.__class__ is self.__class__):
+            raise TypeError("set object expected")
+        for element in other:
+            self.__add(element)
 
     def is_subset(self, other: "Set") -> bool:
         """Return True if set is subset of other, False otherwise.
@@ -169,7 +169,7 @@ class Set:
         return True
 
     def union(self, other: "Set") -> "Set":
-        """Return a new set that is the union of set nd other.
+        """Return a new set that is the union of set and other.
 
         >>> s = Set([1, 2, 3])
         >>> o = Set([1, 4, 5])
@@ -203,7 +203,7 @@ class Set:
         return new_set
 
     def difference(self, other: "Set") -> "Set":
-        """Return a set with the difference between set and other.
+        """Return a new set with the difference between set and other.
 
         >>> s = Set([1, 2, 3])
         >>> o = Set([2, 4, 3, 6])
