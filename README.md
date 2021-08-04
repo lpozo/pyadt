@@ -14,6 +14,7 @@ Basic Python implementation for several Abstract data types. Just a learning exe
 - [Bag (multisets)](#bag-multisets)
 - [Matrix](#matrix)
 - [Queue](#queue)
+- [Set](#set)
 - [Stack](#stack)
 - [Singly Linked List](#singly-linked-list)
 
@@ -102,6 +103,36 @@ This implementation uses a [`collections.deque`](https://docs.python.org/3/libra
 | `item in queue`           | Return `True` if `item` exists in `queue`, `False` otherwise. |
 
 It also supports iteration and reverse iteration.
+
+## Set
+
+[Sets](https://en.wikipedia.org/wiki/Set_(abstract_data_type)) are containers that stores a collection of unique values with no particular order. They typically implement the same operations as their equivalent mathematical sets. Sets are quite useful for mebership tests in which you need to know if a particular value is in the container.
+
+Sets are commonly mutable data types. However, sometimes you'll find static or frozen sets that don't change during their lifetime.
+
+This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.html#list) to store and manage the data. It defines the following operations:
+
+| Operation                 | Description                                                  |
+| ------------------------- | ------------------------------------------------------------ |
+| `set = Set()`             | Build an empty `set`.                                        |
+| `set = Set(iterable)`     | Build a `set` with items form `iterable`.                    |
+| `set.add(element)`        | Add `element` to `set`.                                      |
+| `set.remove(element)`     | Remove `element` from `set`. Raise `KeyError` if `element` doesn't exist. |
+| `set.discard(element)`    | Remove `element` from `set` if present.                      |
+| `set.pop()`               | Pop an element from `set`.                                   |
+| `set.clear()`             | Remove all the elements from `set`.                          |
+| `set.update(other)`       | Update `set` with elements from `other`.                     |
+| `set.is_subset(other)`    | Return `True` if `set` is subset of `other`, `False` otherwise. |
+| `set.is_superset(other)`  | Return `True` if `set` is `superset` of `other`, `False` otherwise. |
+| `set.is_disjoint(other)`  | Return `True` if `set` has no elements in common with `other`. |
+| `set.union(other)`        | Return a new set that is the union of `set` and `other`.     |
+| `set.intersection(other)` | Return a new set that is the intersection of `set` with `other`. |
+| `set.difference(other)`   | Return a new set with the difference between `set` and `other`. |
+| `set == other`            | Return `True` if both sets contain the same elements, `False` otherwise. |
+| `len(set)`                | Return the number of elements in `set`.                      |
+| `element in set`          | Return `True` if `element` is in `set`, `False` otherwise.   |
+
+It also supports iteration. However, since ordering is not important in sets, this implementation doesn't support reverse iteration.
 
 ## Stack
 
