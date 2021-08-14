@@ -114,7 +114,7 @@ class Matrix:
         return self._compute(other, operation=add)
 
     def _compute(self, other: "Matrix", operation: Callable):
-        if not (other.__class__ is self.__class__):
+        if other.__class__ is not self.__class__:
             raise TypeError("matrix object expected")
 
         if other.size == self.size:
@@ -157,7 +157,7 @@ class Matrix:
         return self.__mul__(other)
 
     def __mul__(self, other: "Matrix") -> "Matrix":
-        if not (other.__class__ is self.__class__):
+        if other.__class__ is not self.__class__:
             raise TypeError("matrix object expected")
         if self.cols != other.rows:
             raise ValueError("invalid matrix size")
