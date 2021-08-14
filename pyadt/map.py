@@ -1,6 +1,14 @@
 """Map abstract data type."""
 
-from typing import Any, Iterator, List, Mapping, Optional, Tuple
+from typing import (
+    Any,
+    Iterator,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Tuple,
+)
 
 
 class Map:
@@ -91,6 +99,8 @@ class Map:
         """
         yield from zip(self._keys, self._values)
 
+    __items = items
+
     def update(
         self, other: Optional[Mapping[Any, Any]] = None, /, **kwargs
     ) -> None:
@@ -110,6 +120,64 @@ class Map:
             for key, value in kwargs.items():
                 self[key] = value
 
+    def set_default(self, key, default: Optional[Any] = None, /) -> Any:
+        """Insert a key-default pair into map if key doesn't exist.
+
+        Return the value for key if key is in the dictionary, else default.
+
+        >>> m = Map()
+        >>> m.set_default("one", 1)
+        1
+        >>> m.set_default("two")
+        >>> m["two"] is None
+        True
+        """
+        try:
+            return self[key]
+        except KeyError:
+            self[key] = default
+            return default
+
+    def pop(self, key: Any) -> Any:
+        """Remove a key-value pair and return the value.
+
+        >>> m = Map(one=1, two=2)
+        >>> m.pop("one")
+        1
+        >>> m
+        Map({'two': 2})
+        >>> m.pop("two")
+        2
+        >>> m.pop("missing")
+        Traceback (most recent call last):
+        KeyError: 'missing'
+        """
+        try:
+            index = self._keys.index(key)
+        except ValueError:
+            raise KeyError(f"{key}") from None
+        self._keys.remove(key)
+        return self._values.pop(index)
+
+    def popitem(self) -> Any:
+        """Remove and return a key-value as a tuple.
+
+        >>> m = Map(one=1, two=2)
+        >>> m.popitem()
+        ('two', 2)
+        >>> m
+        Map({'one': 1})
+        >>> m.popitem()
+        ('one', 1)
+        >>> m.popitem()
+        Traceback (most recent call last):
+        KeyError: 'popitem from empty Map'
+        """
+        try:
+            return self._keys.pop(), self._values.pop()
+        except IndexError:
+            raise KeyError("popitem from empty Map") from None
+
     def clear(self) -> None:
         """Remove all the items from map.
 
@@ -122,6 +190,22 @@ class Map:
         """
         self._keys.clear()
         self._values.clear()
+
+    @classmethod
+    def fromkeys(
+        cls, iterable: Sequence, value: Optional[Any] = None, /
+    ) -> "Map":
+        """Return a new Map with keys from iterable and values from value.
+
+        >>> Map.fromkeys(["one", "two"])
+        Map({'one': None, 'two': None})
+        >>> Map.fromkeys(("cats", "dogs", "pythons"), 0)
+        Map({'cats': 0, 'dogs': 0, 'pythons': 0})
+        """
+        mapping = cls()
+        mapping._keys.extend(iterable)
+        mapping._values.extend(value for _ in iterable)
+        return mapping
 
     def __getitem__(self, key: Any) -> Any:
         try:
@@ -140,23 +224,32 @@ class Map:
             self._keys.append(key)
             self._values.append(value)
 
-    def set_default(self, key, default: Optional[Any] = None, /) -> Any:
-        """Insert a key-default pair into map if key doesn't exist.
+    def __eq__(self, other: "Map") -> bool:
+        """Return True if Map has the same items as other.
 
-        Return the value for key if key is in the dictionary, else default.
-
-        >>> m = Map()
-        >>> m.set_default("one", 1)
-        1
-        >>> m.set_default("two")
-        >>> m["two"] is None
+        >>> m = Map(one=1, two=2)
+        >>> o = Map(two=2, one=1)
+        >>> m == o
         True
+        >>> n = Map(two=2, one=1, three=3)
+        >>> m == n
+        False
+        >>> p = Map(two=2, one=111)
+        >>> m == p
+        False
         """
-        try:
-            return self[key]
-        except KeyError:
-            self[key] = default
-            return default
+        if other.__class__ is not self.__class__:
+            raise TypeError("Map object expected")
+        if len(self) != len(other):
+            return False
+        other_items = list(other.__items())
+        for item in self.__items():
+            if item not in other_items:
+                return False
+        return True
+
+    def __contain__(self, key: Any) -> bool:
+        return key in self._keys
 
     def __len__(self) -> int:
         return len(self._keys)
