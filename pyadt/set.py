@@ -21,6 +21,8 @@ class Set:
     >>> s = Set([1, 2, 3, 3, 3])
     >>> s
     Set([1, 2, 3])
+    >>> len(s)
+    3
     """
 
     def __init__(self, iterable: Optional[Sequence[Any]] = None, /) -> None:
@@ -73,6 +75,8 @@ class Set:
         >>> s
         Set([2])
         >>> s.discard(100)
+        >>> s
+        Set([2])
         """
         try:
             self._data.remove(element)
@@ -115,11 +119,17 @@ class Set:
         >>> s.update(o)
         >>> s
         Set([1, 2, 3, 4, 5, 6])
+        >>> s.update([7, 8, 9])
+        Traceback (most recent call last):
+        TypeError: Set object expected
         """
-        if other.__class__ is not self.__class__:
-            raise TypeError("Set object expected")
+        self._validate_other(other)
         for element in other:
             self.__add(element)
+
+    def _validate_other(self, other) -> None:
+        if other.__class__ is not self.__class__:
+            raise TypeError("Set object expected")
 
     def is_subset(self, other: "Set") -> bool:
         """Return True if set is subset of other, False otherwise.
@@ -132,8 +142,7 @@ class Set:
         >>> a.is_subset(o)
         False
         """
-        if other.__class__ is not self.__class__:
-            raise TypeError("Set object expected")
+        self._validate_other(other)
         for element in self:
             if element not in other:
                 return False
@@ -149,8 +158,7 @@ class Set:
         >>> s.is_superset(o)
         False
         """
-        if other.__class__ is not self.__class__:
-            raise TypeError("Set object expected")
+        self._validate_other(other)
         for element in other:
             if element not in self:
                 return False
@@ -167,8 +175,7 @@ class Set:
         >>> s.is_disjoint(a)
         False
         """
-        if other.__class__ is not self.__class__:
-            raise TypeError("Set object expected")
+        self._validate_other(other)
         for element in self:
             if element in other:
                 return False
@@ -182,8 +189,7 @@ class Set:
         >>> s.union(o)
         Set([1, 2, 3, 4, 5])
         """
-        if other.__class__ is not self.__class__:
-            raise TypeError("Set object expected")
+        self._validate_other(other)
         new_set = type(self)()
         new_set._data.extend(self._data)
         for element in other:
@@ -200,8 +206,7 @@ class Set:
         >>> o.intersection(s)
         Set([2, 3])
         """
-        if other.__class__ is not self.__class__:
-            raise TypeError("Set object expected")
+        self._validate_other(other)
         new_set = type(self)()
         for element in self:
             if element in other:
@@ -218,8 +223,7 @@ class Set:
         >>> o.difference(s)
         Set([4, 6])
         """
-        if other.__class__ is not self.__class__:
-            raise TypeError("Set object expected")
+        self._validate_other(other)
         new_set = type(self)()
         for element in self:
             if element not in other:
@@ -227,11 +231,8 @@ class Set:
         return new_set
 
     def __eq__(self, other: "Set") -> bool:
-        if other.__class__ is not self.__class__:
-            raise TypeError("Set object expected")
-        this = self._data[:]
-        that = other._data[:]
-        return this.sort() == that.sort()
+        self._validate_other(other)
+        return sorted(self._data) == sorted(other._data)
 
     def __len__(self) -> int:
         return len(self._data)
