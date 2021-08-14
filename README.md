@@ -110,7 +110,7 @@ It also supports iteration and reverse iteration.
 
 Sets are commonly mutable data types. However, sometimes you'll find static or frozen sets that don't change during their lifetime.
 
-This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.html#list) to store and manage the data. It defines the following operations:
+This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.html#list) to store and manage the data. It only accept hashable values. It defines the following operations:
 
 | Operation                 | Description                                                  |
 | ------------------------- | ------------------------------------------------------------ |
