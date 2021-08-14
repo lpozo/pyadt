@@ -1,14 +1,6 @@
 """Map abstract data type."""
 
-from typing import (
-    Any,
-    Iterator,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Tuple,
-)
+from typing import Any, Iterator, List, Mapping, Optional, Sequence, Tuple
 
 
 class Map:
