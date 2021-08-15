@@ -58,7 +58,7 @@ It also supports iteration and reverse iteration.
 
 ## Map
 
-A map, also known as [associative array](https://en.wikipedia.org/wiki/Associative_array) and dictionary is a colection that stroes key-value pairs. It maps each key to a corresponding value, making it straightforward to search for values using the keys. Keys should be unique and are commonly hashabel objects.
+A map, also known as [associative array](https://en.wikipedia.org/wiki/Associative_array) or dictionary, is a collection that stores key-value pairs. It maps each key to a corresponding value, making it straightforward to search for values using keys. Keys should be unique. They're commonly [hashable](https://en.wikipedia.org/wiki/Hash_function) objects.
 
 This implementation uses two [lists](https://docs.python.org/3/library/stdtypes.html#list) to store and manage the data. One for the keys and another for the values. It defines the following operations:
 
@@ -83,7 +83,7 @@ This implementation uses two [lists](https://docs.python.org/3/library/stdtypes.
 | `key in map`                      | Return `True` if `key` is in `map`, `False` otherwise.       |
 | `del map[key]`                    | Delete the key-value pair at `key`.                          |
 
-It supports direct iteration, iteration over the keys, values and items. It also support reverse iteration.
+It supports direct iteration, iteration over the keys, values and items. It also support reverse iteration over the keys.
 
 ## Matrix
 
