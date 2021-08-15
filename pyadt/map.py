@@ -9,17 +9,14 @@ class Map:
     >>> m = Map({"one": 1, "two": 2})
     >>> m
     Map({'one': 1, 'two': 2})
-
     >>> m = Map(one=1, two=2)
     >>> m
     Map({'one': 1, 'two': 2})
-
     >>> m = Map({"one": 1}, two=2)
     >>> m
     Map({'one': 1, 'two': 2})
     >>> print(m)
     {'one': 1, 'two': 2}
-
     >>> m["one"]
     1
     >>> m["two"]
@@ -42,6 +39,9 @@ class Map:
     >>> del m["three"]
     >>> m
     Map({'one': 1, 'two': 2})
+    >>> m[[1, 2]] = 12
+    Traceback (most recent call last):
+    TypeError: unhashable type: 'list'
     """
 
     def __init__(
@@ -49,12 +49,7 @@ class Map:
     ) -> None:
         self._keys: List[Any] = []
         self._values: List[Any] = []
-        if mapping is not None:
-            for key, value in mapping.items():
-                self[key] = value
-        if kwargs:
-            for key, value in kwargs.items():
-                self[key] = value
+        self.__update(mapping, **kwargs)
 
     def keys(self) -> Iterator[Any]:
         """Return an iterator over the keys of map.
@@ -111,6 +106,8 @@ class Map:
         if kwargs:
             for key, value in kwargs.items():
                 self[key] = value
+
+    __update = update
 
     def set_default(self, key, default: Optional[Any] = None, /) -> Any:
         """Insert a key-default pair into map if key doesn't exist.
@@ -209,6 +206,7 @@ class Map:
     get = __getitem__
 
     def __setitem__(self, key: Any, value: Any) -> None:
+        hash(key)
         if key in self._keys:
             index = self._keys.index(key)
             self._values[index] = value
@@ -217,19 +215,6 @@ class Map:
             self._values.append(value)
 
     def __eq__(self, other: "Map") -> bool:
-        """Return True if Map has the same items as other.
-
-        >>> m = Map(one=1, two=2)
-        >>> o = Map(two=2, one=1)
-        >>> m == o
-        True
-        >>> n = Map(two=2, one=1, three=3)
-        >>> m == n
-        False
-        >>> p = Map(two=2, one=111)
-        >>> m == p
-        False
-        """
         if other.__class__ is not self.__class__:
             raise TypeError("Map object expected")
         if len(self) != len(other):
@@ -261,3 +246,6 @@ class Map:
             raise KeyError(f"{key}") from None
         del self._keys[index]
         del self._values[index]
+
+    def __reversed__(self):
+        yield from reversed(self._keys)

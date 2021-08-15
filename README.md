@@ -12,6 +12,7 @@ Basic Python implementation for several Abstract data types. Just a learning exe
 
 - [Array](#array)
 - [Bag (multisets)](#bag-multisets)
+- [Map](#map)
 - [Matrix](#matrix)
 - [Queue](#queue)
 - [Set](#set)
@@ -54,6 +55,35 @@ This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.h
 | `bag.count(item)`     | Count the frequency of `item` in the `bag`.                  |
 
 It also supports iteration and reverse iteration.
+
+## Map
+
+A map, also known as [associative array](https://en.wikipedia.org/wiki/Associative_array) and dictionary is a colection that stroes key-value pairs. It maps each key to a corresponding value, making it straightforward to search for values using the keys. Keys should be unique and are commonly hashabel objects.
+
+This implementation uses two [lists](https://docs.python.org/3/library/stdtypes.html#list) to store and manage the data. One for the keys and another for the values. It defines the following operations:
+
+| Operation                         | Description                                                  |
+| --------------------------------- | ------------------------------------------------------------ |
+| `map = Map()`                     | Build an empty `map`.                                        |
+| `map = Map(mapping)`              | Build a `map` with key-value pairs from `mapping`.           |
+| `map = Map(kwargs)`               | Build a `map` from keywork arguments.                        |
+| `map.keys()`                      | Return an iterator over the keys of `map`.                   |
+| `map.values()`                    | Return an iterator over the values of `map`.                 |
+| `map.items()`                     | Return an iterator that yields key-value tuples from `map`.  |
+| `map.update(other)`               | Update map with items from `other`.                          |
+| `map.set_default(key[, default])` | Insert a key-default pair into map if key doesn't exist. Return the value for key if key is in the dictionary, else default. |
+| `map.pop(key)`                    | Remove a key-value pair from `map` and return the value.     |
+| `map.popitem()`                   | Remove a key-value pair form `map` and return it as a 2-tuple. |
+| `map.clear()`                     | Remove all the items from `map`.                             |
+| `Map.fromkeys(iterable[, value])` | Return a new `map` with keys from iterable and the values set to `value`. |
+| `map[key]`                        | Retrieve the `value` at `key`.                               |
+| `map[key] = value`                | Assign `value` to `key`.                                     |
+| `map == other`                    | Return True if `map` has the same items as `other`.          |
+| `len(map)`                        | Return the number of items (key-value pairs) in `map`.       |
+| `key in map`                      | Return `True` if `key` is in `map`, `False` otherwise.       |
+| `del map[key]`                    | Delete the key-value pair at `key`.                          |
+
+It supports direct iteration, iteration over the keys, values and items. It also support reverse iteration.
 
 ## Matrix
 
