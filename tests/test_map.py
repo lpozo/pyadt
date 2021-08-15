@@ -101,3 +101,7 @@ def test_fromkeys():
 def test_del(mock_map):
     del mock_map["one"]
     assert "one" not in mock_map
+
+
+def test_reverse_iteration(mock_map):
+    assert list(reversed(mock_map)) == ["three", "two", "one"]
