@@ -215,19 +215,6 @@ class Map:
             self._values.append(value)
 
     def __eq__(self, other: "Map") -> bool:
-        """Return True if Map has the same items as other.
-
-        >>> m = Map(one=1, two=2)
-        >>> o = Map(two=2, one=1)
-        >>> m == o
-        True
-        >>> n = Map(two=2, one=1, three=3)
-        >>> m == n
-        False
-        >>> p = Map(two=2, one=111)
-        >>> m == p
-        False
-        """
         if other.__class__ is not self.__class__:
             raise TypeError("Map object expected")
         if len(self) != len(other):
@@ -259,3 +246,6 @@ class Map:
             raise KeyError(f"{key}") from None
         del self._keys[index]
         del self._values[index]
+
+    def __reversed__(self):
+        yield from reversed(self._keys)
