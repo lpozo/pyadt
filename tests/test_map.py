@@ -1,6 +1,7 @@
-"""Test set.py."""
+"""Test map.py."""
 
-from typing import OrderedDict
+from collections import OrderedDict
+
 import pytest
 
 from pyadt import Map
