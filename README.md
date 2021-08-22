@@ -11,13 +11,14 @@ Basic Python implementation for several Abstract data types. Just a learning exe
 ## Table of Content
 
 - [Array](#array)
-- [Bag (multisets)](#bag-multisets)
-- [Map](#map)
-- [Matrix](#matrix)
-- [Queue](#queue)
+- [Map (Associative Array)](#map-associative-array)
 - [Set](#set)
+- [Bag (multiset)](#bag-multiset)
+- [Matrix](#matrix)
 - [Stack](#stack)
+- [Queue](#queue)
 - [Singly Linked List](#singly-linked-list)
+- [Doubly Linked List](#doubly-linked-list)
 
 ## Array
 
@@ -36,27 +37,7 @@ This implementation uses a `ctypes.py_object` to store and manage the data. It d
 
 It also supports iteration and reverse iteration.
 
-## Bag (multisets)
-
-A bag, also known as [multiset](https://en.wikipedia.org/wiki/Multiset), is a container like a shopping bag. It's a set-like container that allows multiple instances of a given value. You can use a bag to store a collection of items. Bags restrict access to individual items.
-
-This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.html#list) to store and manage the data. It defines the following operations:
-
-| Operation             | Description                                                 |
-| --------------------- | ----------------------------------------------------------- |
-| `bag = Bag()`         | Build an empty `bag`.                                       |
-| `bag = Bag(iterable)` | Build a `bag` with items from iterable.                     |
-| `bag.add(item)`       | Add `item` the to `bag`.                                    |
-| `bag.remove(item)`    | Remove `item` from `bag`.                                   |
-| `bag.pop()`           | Pop an item from the right end of `bag`.                    |
-| `bag.clear()`         | Remove all the items from `bag`.                            |
-| `len(bag)`            | Return the length of the `bag`.                             |
-| `item in bag`         | Return `True` if `item` exists in `bag`, `False` otherwise. |
-| `bag.count(item)`     | Count the frequency of `item` in the `bag`.                  |
-
-It also supports iteration and reverse iteration.
-
-## Map
+## Map (Associative Array)
 
 A map, also known as [associative array](https://en.wikipedia.org/wiki/Associative_array) or dictionary, is a collection that stores key-value pairs. It maps each key to a corresponding value, making it straightforward to search for values using keys. Keys should be unique. They're commonly [hashable](https://en.wikipedia.org/wiki/Hash_function) objects.
 
@@ -84,55 +65,6 @@ This implementation uses two [lists](https://docs.python.org/3/library/stdtypes.
 | `del map[key]`                    | Delete the key-value pair at `key`.                          |
 
 It supports direct iteration, iteration over the keys, values and items. It also support reverse iteration over the keys.
-
-## Matrix
-
-A [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) is a collection of numbers arranged in rows and columns as a rectangular grid of a fixed size. Matrices are quite useful in several areas, such as [linear algebra](https://en.wikipedia.org/wiki/Linear_algebra) and [computer graphics](https://en.wikipedia.org/wiki/Computer_graphics). You can use matrices for representing and solving systems of [linear equations](https://en.wikipedia.org/wiki/Linear_equation), for example.
-
-This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.html#list) to store and manage the data. It defines the following operations:
-
-| Operation                              | Description                                                  |
-| -------------------------------------- | ------------------------------------------------------------ |
-| `matrix = Matrix(rows, cols)`          | Build a `matrix` of size `rows` x `cols`.                    |
-| `matrix = Matrix(rows, cols, default)` | Build a `matrix` of size `rows` x `cols`, which values default to `default`. |
-| `matrix.rows`                          | Return the number of rows in `matrix`.                       |
-| `matrix.cols`                          | Return the number of columns in `matrix`.                    |
-| `matrix.size`                          | Return the size of `matrix` as a tuple of `cols` and `rows`. |
-| `matrix.scale_by(scalar)`              | Scale the whole `matrix` by `scalar`.                        |
-| `matrix.transpose()`                   | Return a new matrix, which is the transpose of `matrix`.     |
-| `matrix.add(other)`                    | Return a new matrix, which is the addition of `matrix` and `other`. |
-| `matrix + other`                       | Return a new matrix, which is the addition of `matrix` and `other`. |
-| `matrix.subtract(other)`               | Return a new matrix, which is the subtraction of `matrix` and `other`. |
-| `matrix - other`                       | Return a new matrix, which is the subtraction of `matrix` and `other`. |
-| `matrix.multiply(other)`                | Return a new matrix, which is the multiplication of `matrix` and `other`. |
-| `matrix * other`                       | Return a new matrix, which is the multiplication of `matrix` and `other`. |
-| `matrix[i, j]`                         | Retrieve the value at cell `(i, j)` from `matrix`.           |
-| `matrix[i, j] = value`                 | Assign `value` to the cell `(i, j)` of `matrix`.             |
-| `Matrix.from_list_of_lists(iterable)`  | Build a new matrix from a list of lists. It's a class method. |
-
-It doesn't support direct iteration.
-
-## Queue
-
-A queue is a [collection](https://en.wikipedia.org/wiki/Collection_(abstract_data_type)) of items. You can modify queues by adding items at one end and removing items from the opposite end.
-
-Queues manage their items in a **first in**, **first out** ([FIFO](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics))) fashion. They work as a pipe where you push in new items at one end of the pipe and pop old items out from the other end. Adding an item to one end of a queue is known as an **enqueue** operation. Removing an item from the other end is called **dequeue**.
-
-This implementation uses a [`collections.deque`](https://docs.python.org/3/library/collections.html?highlight=collections#collections.deque) to store and manage the data. It defines the following operations:
-
-| Operation                 | Description                                                  |
-| ------------------------- | ------------------------------------------------------------ |
-| `queue = Queue()`         | Build an empty `queue`.                                      |
-| `queue = Queue(iterable)` | Build a `queue` with items from `iterable`.                  |
-| `queue.enqueue(item)`     | Add `item` to the right end of the `queue`.                  |
-| `queue.dequeue()`         | Pop the item at the left end of the `queue`.                 |
-| `queue.remove(item)`      | Remove `item` from the `queue`.                              |
-| `queue.is_empty()`        | Return `True` if the `queue` is empty, `False` otherwise.    |
-| `queue.front()`           | Return the item at the left end of the `queue` without popping it. |
-| `len(queue)`              | Return the length of the `queue`.                            |
-| `item in queue`           | Return `True` if `item` exists in `queue`, `False` otherwise. |
-
-It also supports iteration and reverse iteration.
 
 ## Set
 
@@ -164,6 +96,53 @@ This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.h
 
 It also supports iteration. However, since ordering is not important in sets, this implementation doesn't support reverse iteration.
 
+## Bag (Multiset)
+
+A bag, also known as [multiset](https://en.wikipedia.org/wiki/Multiset), is a container like a shopping bag. It's a set-like container that allows multiple instances of a given value. You can use a bag to store a collection of items. Bags restrict access to individual items.
+
+This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.html#list) to store and manage the data. It defines the following operations:
+
+| Operation             | Description                                                 |
+| --------------------- | ----------------------------------------------------------- |
+| `bag = Bag()`         | Build an empty `bag`.                                       |
+| `bag = Bag(iterable)` | Build a `bag` with items from iterable.                     |
+| `bag.add(item)`       | Add `item` the to `bag`.                                    |
+| `bag.remove(item)`    | Remove `item` from `bag`.                                   |
+| `bag.pop()`           | Pop an item from the right end of `bag`.                    |
+| `bag.clear()`         | Remove all the items from `bag`.                            |
+| `len(bag)`            | Return the length of the `bag`.                             |
+| `item in bag`         | Return `True` if `item` exists in `bag`, `False` otherwise. |
+| `bag.count(item)`     | Count the frequency of `item` in the `bag`.                  |
+
+It also supports iteration and reverse iteration.
+
+## Matrix
+
+A [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) is a collection of numbers arranged in rows and columns as a rectangular grid of a fixed size. Matrices are quite useful in several areas, such as [linear algebra](https://en.wikipedia.org/wiki/Linear_algebra) and [computer graphics](https://en.wikipedia.org/wiki/Computer_graphics). You can use matrices for representing and solving systems of [linear equations](https://en.wikipedia.org/wiki/Linear_equation), for example.
+
+This implementation uses a [`list`](https://docs.python.org/3/library/stdtypes.html#list) to store and manage the data. It defines the following operations:
+
+| Operation                              | Description                                                  |
+| -------------------------------------- | ------------------------------------------------------------ |
+| `matrix = Matrix(rows, cols)`          | Build a `matrix` of size `rows` x `cols`.                    |
+| `matrix = Matrix(rows, cols, default)` | Build a `matrix` of size `rows` x `cols`, which values default to `default`. |
+| `matrix.rows`                          | Return the number of rows in `matrix`.                       |
+| `matrix.cols`                          | Return the number of columns in `matrix`.                    |
+| `matrix.size`                          | Return the size of `matrix` as a tuple of `cols` and `rows`. |
+| `matrix.scale_by(scalar)`              | Scale the whole `matrix` by `scalar`.                        |
+| `matrix.transpose()`                   | Return a new matrix, which is the transpose of `matrix`.     |
+| `matrix.add(other)`                    | Return a new matrix, which is the addition of `matrix` and `other`. |
+| `matrix + other`                       | Return a new matrix, which is the addition of `matrix` and `other`. |
+| `matrix.subtract(other)`               | Return a new matrix, which is the subtraction of `matrix` and `other`. |
+| `matrix - other`                       | Return a new matrix, which is the subtraction of `matrix` and `other`. |
+| `matrix.multiply(other)`                | Return a new matrix, which is the multiplication of `matrix` and `other`. |
+| `matrix * other`                       | Return a new matrix, which is the multiplication of `matrix` and `other`. |
+| `matrix[i, j]`                         | Retrieve the value at cell `(i, j)` from `matrix`.           |
+| `matrix[i, j] = value`                 | Assign `value` to the cell `(i, j)` of `matrix`.             |
+| `Matrix.from_list_of_lists(iterable)`  | Build a new matrix from a list of lists. It's a class method. |
+
+It doesn't support direct iteration.
+
 ## Stack
 
 A [stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) is a data structure where access is only at one end of the sequence. New values are pushed onto the stack to add them to the sequence and popped off the stack to remove them from the sequence. Stacks are used in many algorithms in computer science. They're useful when parsing information. Stacks are called **last in**, **first out** ([LIFO](https://en.wikipedia.org/wiki/FIFO_and_LIFO_accounting#LIFO)) data structures. The last item pushed is the first item popped.
@@ -183,6 +162,28 @@ This implementation uses a [`collections.deque`](https://docs.python.org/3/libra
 
 It also supports iteration and reverse iteration.
 
+## Queue
+
+A queue is a [collection](https://en.wikipedia.org/wiki/Collection_(abstract_data_type)) of items. You can modify queues by adding items at one end and removing items from the opposite end.
+
+Queues manage their items in a **first in**, **first out** ([FIFO](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics))) fashion. They work as a pipe where you push in new items at one end of the pipe and pop old items out from the other end. Adding an item to one end of a queue is known as an **enqueue** operation. Removing an item from the other end is called **dequeue**.
+
+This implementation uses a [`collections.deque`](https://docs.python.org/3/library/collections.html?highlight=collections#collections.deque) to store and manage the data. It defines the following operations:
+
+| Operation                 | Description                                                  |
+| ------------------------- | ------------------------------------------------------------ |
+| `queue = Queue()`         | Build an empty `queue`.                                      |
+| `queue = Queue(iterable)` | Build a `queue` with items from `iterable`.                  |
+| `queue.enqueue(item)`     | Add `item` to the right end of the `queue`.                  |
+| `queue.dequeue()`         | Pop the item at the left end of the `queue`.                 |
+| `queue.remove(item)`      | Remove `item` from the `queue`.                              |
+| `queue.is_empty()`        | Return `True` if the `queue` is empty, `False` otherwise.    |
+| `queue.front()`           | Return the item at the left end of the `queue` without popping it. |
+| `len(queue)`              | Return the length of the `queue`.                            |
+| `item in queue`           | Return `True` if `item` exists in `queue`, `False` otherwise. |
+
+It also supports iteration and reverse iteration.
+
 ## Singly Linked List
 
 A [linked list](https://en.wikipedia.org/wiki/Linked_list) is a linear collection of data where each item in the list is stored in a separate [node](https://en.wikipedia.org/wiki/Node_(computer_science)). A node stores two pieces of information: a data item and a reference to the next node in the linked list, often called `.next`.
@@ -191,16 +192,38 @@ The order of nodes doesn't follow a sequence of contiguous physical memory locat
 
 This implementation defines the following operations:
 
-| Operation                    | Description                                             |
-| ---------------------------- | ------------------------------------------------------- |
-| `llist.append_left(value)`   | Add a node holding `value` to the left end of `llist`.  |
-| `llist.append(value)`        | Add a node holding `value` to the right end of `llist`. |
-| `llist.insert(index, value)` | Insert a node holding `value` at `index`.               |
-| `llist.remove(value)`        | Remove the node holding `value` from `llist`.           |
-| `llist.reverse()`            | Reverse the `llist` in place.                           |
-| `len(llist)`                 | Return the number of nodes in `llist`.                  |
+| Operation                           | Description                                             |
+| ----------------------------------- | ------------------------------------------------------- |
+| `llist = LinkedList()`              | Create and empty linked list.                           |
+| `llist = DoblyLinkedList(iterable)` | Create a linked list with items from `iterable`.        |
+| `llist.append_left(value)`          | Add a node holding `value` to the left end of `llist`.  |
+| `llist.append(value)`               | Add a node holding `value` to the right end of `llist`. |
+| `llist.insert(index, value)`        | Insert a node holding `value` at `index`.               |
+| `llist.remove(value)`               | Remove the node holding `value` from `llist`.           |
+| `llist.reverse()`                   | Reverse the `llist` in place.                           |
+| `len(llist)`                        | Return the number of nodes in `llist`.                  |
 
 It also supports iteration.
+
+## Doubly Linked List
+
+A [doubly linked list](https://en.wikipedia.org/wiki/Doubly_linked_list) is a linear collection of data where each item in the list is stored in a separate [node](https://en.wikipedia.org/wiki/Node_(computer_science)). Every node stores three pieces of information: a data item, a reference to the next node in the list (`.next`), and a reference to the previous node in the list (`.previous`). The order of nodes doesn't follow a sequence of contiguous physical memory locations.
+
+The list also holds a reference to the first node (`.head`) and to the last node (`.tail`). This make it possible to traverse the list in both directions, forward and backward.
+
+This implementation defines the following operations:
+
+| Operation                            | Description                                              |
+| ------------------------------------ | -------------------------------------------------------- |
+| `dllist = DoublyLinkedList()`        | Create and empty doubly linked list.                     |
+| `dllist = DoblyLinkedList(iterable)` | Create a doubly linked list with items from `iterable`.  |
+| `dllist.append_left(value)`          | Add a node holding `value` to the left end of `dllist`.  |
+| `dllist.append(value)`               | Add a node holding `value` to the right end of `dllist`. |
+| `dllist.insert(index, value)`        | Insert a node holding `value` at `index`.                |
+| `dllist.remove(value)`               | Remove the node holding `value` from `dllist`.           |
+| `len(llist)`                         | Return the number of nodes in `llist`.                   |
+
+It also supports iteration and reverse iteration.
 
 ## Authors
 
