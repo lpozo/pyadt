@@ -1,7 +1,7 @@
 """Doubly Linked List abstract data type."""
 
 
-from typing import Any, Iterator, Sequence, Optional
+from typing import Any, Iterator, Optional, Sequence
 
 
 class Node:
