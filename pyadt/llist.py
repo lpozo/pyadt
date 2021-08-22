@@ -194,23 +194,15 @@ class LinkedList:
             node = node.next
 
     def __repr__(self) -> str:
-        nodes = self._nodes_as_list()
-        return f"{self.__class__.__name__}({nodes})"
-
-    def _nodes_as_list(self):
-        node = self.head
-        nodes = []
-        while node is not None:
-            nodes.append(node.data)
-            node = node.next
-        return nodes
+        data = [node.data for node in self]
+        return f"{self.__class__.__name__}({data})"
 
     def __str__(self) -> str:
-        nodes = [str(data) for data in self._nodes_as_list()]
-        nodes.append("None")
-        if len(nodes) == 1:
-            return f"HEAD({nodes[0]})"
-        return f"HEAD({nodes[0]}) -> " + " -> ".join(nodes[1:])
+        data = [str(node.data) for node in self]
+        data.append("None")
+        if len(data) == 1:
+            return f"HEAD({data[0]})"
+        return f"HEAD({data[0]}) -> " + " -> ".join(data[1:])
 
     def __len__(self):
         return self._length
