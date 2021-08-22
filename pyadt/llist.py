@@ -56,6 +56,10 @@ class LinkedList:
         >>> ll.append_left(1)
         >>> ll
         LinkedList([1, 2, 3])
+        >>> ll = LinkedList()
+        >>> ll.append_left(1)
+        >>> ll
+        LinkedList([1])
         """
         node = Node(data=value)
         node.next = self.head
@@ -89,7 +93,6 @@ class LinkedList:
         >>> ll.insert(0, 1)
         >>> ll
         LinkedList([1])
-
         >>> ll = LinkedList([1, 3])
         >>> ll.insert(1, 2)
         >>> ll
@@ -99,15 +102,14 @@ class LinkedList:
         Traceback (most recent call last):
         IndexError: index out of range
         """
-        node = Node(data=value)
-
         if self.head is None or index == 0:
-            self.append_left(node)
+            self.append_left(value)
             return
 
         previous_node = self.head
         for i, current_node in enumerate(self):
             if i == index:
+                node = Node(data=value)
                 previous_node.next = node
                 node.next = current_node
                 self._length += 1
@@ -194,23 +196,15 @@ class LinkedList:
             node = node.next
 
     def __repr__(self) -> str:
-        nodes = self._nodes_as_list()
-        return f"{self.__class__.__name__}({nodes})"
-
-    def _nodes_as_list(self):
-        node = self.head
-        nodes = []
-        while node is not None:
-            nodes.append(node.data)
-            node = node.next
-        return nodes
+        data = [node.data for node in self]
+        return f"{self.__class__.__name__}({data})"
 
     def __str__(self) -> str:
-        nodes = [str(data) for data in self._nodes_as_list()]
-        nodes.append("None")
-        if len(nodes) == 1:
-            return f"HEAD({nodes[0]})"
-        return f"HEAD({nodes[0]}) -> " + " -> ".join(nodes[1:])
+        data = [str(node.data) for node in self]
+        data.append("None")
+        if len(data) == 1:
+            return f"HEAD({data[0]})"
+        return f"HEAD({data[0]}) -> " + " -> ".join(data[1:])
 
     def __len__(self):
         return self._length
