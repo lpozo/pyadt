@@ -56,6 +56,10 @@ class LinkedList:
         >>> ll.append_left(1)
         >>> ll
         LinkedList([1, 2, 3])
+        >>> ll = LinkedList()
+        >>> ll.append_left(1)
+        >>> ll
+        LinkedList([1])
         """
         node = Node(data=value)
         node.next = self.head
@@ -89,7 +93,6 @@ class LinkedList:
         >>> ll.insert(0, 1)
         >>> ll
         LinkedList([1])
-
         >>> ll = LinkedList([1, 3])
         >>> ll.insert(1, 2)
         >>> ll
@@ -99,15 +102,14 @@ class LinkedList:
         Traceback (most recent call last):
         IndexError: index out of range
         """
-        node = Node(data=value)
-
         if self.head is None or index == 0:
-            self.append_left(node)
+            self.append_left(value)
             return
 
         previous_node = self.head
         for i, current_node in enumerate(self):
             if i == index:
+                node = Node(data=value)
                 previous_node.next = node
                 node.next = current_node
                 self._length += 1
